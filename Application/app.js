@@ -25,7 +25,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // Middleware of Log file
 app.use(logReqRes("logging.txt"));
 
-app.use("/", urlRouter);
 app.use("/url", urlRouter);
 
 // catch 404 and forward to error handler
