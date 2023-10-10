@@ -1,6 +1,10 @@
 const ShortUniqueId = require("short-unique-id");
 const URL = require("../models/url");
 
+module.exports.handleWelcomeDashboard = async (req, res) => {
+  return res.render("Welcome to URL dashboard");
+};
+
 module.exports.handleGenerateNewURL = async (req, res) => {
   const body = req.body;
   if (!body.url) return res.status(400).json({ error: "URL not found" });
@@ -39,5 +43,5 @@ module.exports.handleGetURLAnalytics = async (req, res) => {
   return res.json({
     totalClicks: result.visitHistory.length,
     analytics: result.visitHistory,
-  })
+  });
 };

@@ -3,10 +3,9 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const {logReqRes} = require("./middlewares/index");
 const {connectMongoDB}  = require("./connectionDB");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 var urlRouter = require("./routes/url");
 
 var app = express();
@@ -23,9 +22,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+// Middleware of Log file
+app.use(logReqRes("logging.txt"));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/", urlRouter);
 app.use("/url", urlRouter);
 
 // catch 404 and forward to error handler
