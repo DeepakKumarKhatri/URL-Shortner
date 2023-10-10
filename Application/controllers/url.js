@@ -1,8 +1,8 @@
 const ShortUniqueId = require("short-unique-id");
 const URL = require("../models/url");
 
-module.exports.handleWelcomeDashboard = async (req, res) => {
-  return res.render("Welcome to URL dashboard");
+module.exports.handleWelcomeDashboard = (req, res) => {
+  return res.json("Welcome to URL dashboard");
 };
 
 module.exports.handleGenerateNewURL = async (req, res) => {
