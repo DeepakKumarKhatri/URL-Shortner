@@ -1,23 +1,20 @@
 const ShortUniqueId = require("short-unique-id");
 const URL = require("../models/url");
 
-module.exports.handleWelcomeDashboard = (req, res) => {
-  return res.json("Welcome to URL dashboard");
-};
-
 module.exports.handleGenerateNewURL = async (req, res) => {
   const body = req.body;
   if (!body.url) return res.status(400).json({ error: "URL not found" });
 
   const shortId = new ShortUniqueId({ length: 8 });
   const uid = new ShortUniqueId();
-
+  const newGeneratedID = uid.rnd();
   await URL.create({
-    shortId: uid.rnd(),
+    shortId: newGeneratedID,
     redirectURL: body.url,
     visitHistory: [],
   });
-  return res.json({ urlId: shortId });
+
+  return res.render("home", { id: newGeneratedID });
 };
 
 module.exports.handleSearchURLByID = async (req, res) => {
