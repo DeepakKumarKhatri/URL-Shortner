@@ -11,6 +11,7 @@ module.exports.handleGenerateNewURL = async (req, res) => {
     shortId: newGeneratedID,
     redirectURL: body.url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
 
   return res.render("home", { id: newGeneratedID });
