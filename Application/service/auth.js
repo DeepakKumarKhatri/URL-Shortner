@@ -1,19 +1,20 @@
-const sessionIdToUserMap = new Map();
+const jwt = require("jsonwebtoken");
+const secretKey = "Deepak123@456";
 
-module.exports.setUser = (id, user) => {
-    console.log(id, user);
-  if (id && user) {
-    sessionIdToUserMap.set(id, user);
-    console.log(sessionIdToUserMap);
-  } else {
-    throw new Error('Invalid id or user.');
-  }
+module.exports.setUser = (user) => {
+  const payload = {
+    _id: user._id,
+    email: user.email,
+  };
+  const myToken = jwt.sign(payload, secretKey);
+  return myToken;
 };
 
-module.exports.getUser = (id) => {
-  if (id) {
-    return sessionIdToUserMap.get(id);
-  } else {
-    throw new Error('Invalid id.');
+module.exports.getUser = (token) => {
+  if (!token) return null;
+  try {
+    return jwt.verify(token, secretKey);
+  } catch (error) {
+    return null;
   }
 };
