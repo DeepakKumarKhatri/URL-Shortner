@@ -31,7 +31,7 @@ module.exports.handleSearchURLByID = async (req, res) => {
       },
     }
   );
-  res.redirect(entry.redirectURL);
+  res.redirect(entry?.redirectURL);
 };
 
 module.exports.handleGetURLAnalytics = async (req, res) => {

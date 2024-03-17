@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+require("dotenv").config();
 var logger = require("morgan");
 const { logReqRes } = require("./middlewares/index");
 const { connectMongoDB } = require("./connectionDB");
@@ -16,7 +17,7 @@ var userRouter = require("./routes/user");
 var app = express();
 
 // Connect to MongoDB
-connectMongoDB("mongodb://127.0.0.1:27017/url-shortner");
+connectMongoDB(process.env.MONGO_URL);
 
 // view engine setup
 app.set("view engine", "ejs");
