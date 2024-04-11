@@ -561,3 +561,8 @@
  1710690332670 : /user/login : ::1 : POST
  1710690332839 : /userScreen : ::1 : GET
  1710690338864 : /userScreen : ::1 : GET
+ 1712846655055 : / : ::1 : GET
+ 1712846655494 : /favicon.ico : ::1 : GET
+ 1712846656944 : /login : ::1 : GET
+ 1712846658184 : /user/login : ::1 : POST
+ 1712846658262 : /userScreen : ::1 : GET
